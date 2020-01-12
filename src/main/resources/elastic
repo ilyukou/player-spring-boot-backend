@@ -1,0 +1,25 @@
+network.host: 0.0.0.0
+cluster.name: my-application
+node.name: "node-1"
+
+sudo systemctl start elasticsearch.service
+
+http://localhost:9200/?pretty
+
+{
+    "name": "ilya-HP-ProBook-4540s",
+    "cluster_name": "elasticsearch",
+    "cluster_uuid": "QcUlGIVxSAeC3sajbkrI9A",
+    "version": {
+        "number": "7.5.1",
+        "build_flavor": "default",
+        "build_type": "deb",
+        "build_hash": "3ae9ac9a93c95bd0cdc054951cf95d88e1e18d96",
+        "build_date": "2019-12-16T22:57:37.835892Z",
+        "build_snapshot": false,
+        "lucene_version": "8.3.0",
+        "minimum_wire_compatibility_version": "6.8.0",
+        "minimum_index_compatibility_version": "6.0.0-beta1"
+    },
+    "tagline": "You Know, for Search"
+}

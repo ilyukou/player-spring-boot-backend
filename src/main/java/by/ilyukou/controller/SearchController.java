@@ -27,4 +27,11 @@ public class SearchController {
         return new HttpDto<List<Music>>(HttpDtoResponseStatus.OK,searchService.search(query));
     }
 
+    @GetMapping("/elastic")
+    public HttpDto<List<Music>> elastic(
+            @RequestParam String query
+    ) {
+        return new HttpDto<List<Music>>(HttpDtoResponseStatus.OK,searchService.elasticSearch(query));
+    }
+
 }

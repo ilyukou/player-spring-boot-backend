@@ -20,18 +20,13 @@ public class ElasticSearchServiceImpl implements SearchService {
         this.musicService = musicService;
     }
 
-    @Transactional
-    @Override
-    public List<Music> get(String q) {
-        Music music = new Music();
-        music.setName(q);
-        musicService.save(music);
-
-        return musicService.findAll();
-    }
-
     @Override
     public List<Music> search(String query) {
         return musicService.findByName(query);
+    }
+
+    @Override
+    public List<Music> elasticSearch(String query) {
+        return null;
     }
 }

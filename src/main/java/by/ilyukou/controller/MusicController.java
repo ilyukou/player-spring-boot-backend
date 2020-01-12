@@ -38,6 +38,7 @@ public class MusicController {
             @RequestBody MultipartFile file
     ) {
         musicService.saveFile(file);
+        System.out.println(file.getContentType());
     }
 
     @GetMapping("/get")
@@ -53,6 +54,7 @@ public class MusicController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+
     @GetMapping("/getType")
     public String getType(
             @RequestParam Long id
@@ -60,44 +62,5 @@ public class MusicController {
         return musicService.getById(id).getType();
     }
 
-//    @GetMapping("/get")
-//    public void getFile(
-//            @RequestParam Long id,
-//            HttpServletResponse response) {
-//        try {
-//            Music music = musicService.getById(id);
-//
-//            InputStream is = diskService.loadFileAsResource(music.getFileNameOnDisk()).getInputStream();
-//
-//            // copy it to response's OutputStream
-//            IOUtils.copy(is, response.getOutputStream());
-//            response.flushBuffer();
-//        } catch (IOException ex) {
-//            throw new RuntimeException("IOError writing file to output stream");
-//        }
-//
-//    }
-    @GetMapping("/get1")
-    public void getLogFile(
-            @RequestParam Long id,
-            HttpServletResponse response
-    )   {
-        try {
-            Music music = musicService.getById(id);
-            String fileName=music.getFileNameOnDisk();
-            String filePathToBeServed = new FileStorageProperties().getUploadDir();
-            File fileToDownload = new File(filePathToBeServed+fileName);
-
-            InputStream inputStream = new FileInputStream(fileToDownload);
-            response.setContentType(music.getType());
-            response.setHeader("Content-Disposition", "attachment; filename="+fileName);
-            IOUtils.copy(inputStream, response.getOutputStream());
-            response.flushBuffer();
-            inputStream.close();
-        } catch (Exception exception){
-            System.out.println(exception.getMessage());
-        }
-
-    }
 }
 
