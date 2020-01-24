@@ -32,5 +32,12 @@ public class MusicController {
         music.setName(name);
         elasticService.add(music);
     }
+
+    @GetMapping("/findByName")
+    public List<Music> findByName(
+            @RequestParam String name
+    ){
+        return elasticService.findByName(name);
+    }
 }
 

@@ -39,4 +39,9 @@ public class ElasticServiceImpl implements ElasticService {
     public void add(Music music) {
         musicElasticRepository.save(music);
     }
+
+    @Override
+    public List<Music> findByName(String name) {
+        return musicElasticRepository.findByName(name);
+    }
 }
